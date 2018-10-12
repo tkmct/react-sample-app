@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Takamichi-tsutsumi/oreact.git"
+    "url": "git+ssh://git@github.com/tkmttm/react-sample-app.git"
   },
   "keywords": [],
   "author": "ttsutsumi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Takamichi-tsutsumi/oreact/issues"
+    "url": "https://github.com/tkmttm/react-sample-app/issues"
   },
-  "homepage": "https://github.com/Takamichi-tsutsumi/oreact#readme",
+  "homepage": "https://github.com/tkmttm/react-sample-app#readme",
   "lint-staged": {
     "*.ts": [
       "tslint --fix",
