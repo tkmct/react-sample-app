@@ -1,17 +1,31 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 
-export default class App extends React.Component {
-  public clickButton = () => {
-    console.info('Hello, my name is App')
-  }
+interface IProps {
+  count: number
+  increment: () => { type: string }
+  decrement: () => { type: string }
+}
 
+class App extends React.Component<IProps> {
   public render() {
     return (
       <div>
-        <h1>React SSR Sample</h1>
-        <p>HMR is working fine!!</p>
-        <button onClick={this.clickButton}>Hi!</button>
+        <h1>COUNTER</h1>
+        <p>{this.props.count}</p>
+        <button onClick={this.props.increment}>INCREMENT</button>
+        <button onClick={this.props.decrement}>DECREMENT</button>
       </div>
     )
   }
 }
+
+export default connect(
+  (state: any) => ({
+    count: state
+  }),
+  {
+    increment: () => ({ type: 'INCREMENT' }),
+    decrement: () => ({ type: 'DECREMENT' })
+  }
+)(App)
