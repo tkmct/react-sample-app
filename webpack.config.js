@@ -25,13 +25,13 @@ const base = {
 
 const serverConfig = merge(base, {
   target: "node",
-  entry: { server: "./src/server.tsx" },
+  entry: { server: "./src/server/server.tsx" },
   externals: [nodeExternals()]
 });
 
 const clientConfig = merge(base, {
   target: "web",
-  entry: { client: "./src/client.tsx" }
+  entry: { client: "./src/client/index.tsx" }
 });
 
 module.exports = [serverConfig, clientConfig];

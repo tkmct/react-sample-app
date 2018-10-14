@@ -1,7 +1,7 @@
 import * as Express from 'express'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
-import App from './App'
+import App from '../client/App'
 
 const app = Express()
 
