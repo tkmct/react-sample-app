@@ -4,9 +4,8 @@
   "description": "React Sample App",
   "main": "dist/client.js",
   "scripts": {
-    "dev": "npm-run-all --parallel build:dev server",
-    "build:dev": "webpack --watch",
-    "server": "nodemon --watch dist dist/server.js",
+    "dev:build": "webpack --watch --progress",
+    "dev:server": "nodemon --watch dist dist/server.js",
     "test": "jest --coverage",
     "precommit": "lint-staged"
   },
@@ -22,7 +21,7 @@
   },
   "homepage": "https://github.com/tkmttm/react-sample-app#readme",
   "lint-staged": {
-    "*.ts": [
+    "*.{ts, tsx}": [
       "tslint --fix",
       "git add"
     ]
