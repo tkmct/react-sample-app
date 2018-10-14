@@ -6,6 +6,7 @@
   "scripts": {
     "dev:build": "webpack --watch --progress",
     "dev:server": "nodemon --watch dist dist/server.js",
+    "dev:bench": "autocannon http://localhost:2233",
     "test": "jest --coverage",
     "precommit": "lint-staged"
   },
@@ -31,6 +32,7 @@
     "@types/jest": "^23.3.5",
     "@types/react": "^16.4.16",
     "@types/react-dom": "^16.0.9",
+    "autocannon": "^3.0.1",
     "clean-webpack-plugin": "^0.1.19",
     "husky": "^1.1.2",
     "jest": "^23.6.0",

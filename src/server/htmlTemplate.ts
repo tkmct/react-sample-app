@@ -1,10 +1,6 @@
-import * as React from 'react'
-
-export default function htmlTemplate(
-  reactDom: React.ReactNode,
-  assets: string[]
-) {
-  return `
+export default function htmlTemplate(assets: string[]) {
+  return [
+    `
       <!DOCTYPE html>
       <html>
       <head>
@@ -13,9 +9,11 @@ export default function htmlTemplate(
       </head>
       
       <body>
-          <div id="app">${reactDom}</div>
+          <div id="app">`,
+    `</div>
           ${assets.map(src => `<script src="${src}"></script>`).join('\n')}
       </body>
       </html>
   `
+  ]
 }
