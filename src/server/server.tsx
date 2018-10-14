@@ -1,18 +1,44 @@
 import * as Express from 'express'
 import * as React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToNodeStream } from 'react-dom/server'
 import App from '../client/App'
-import renderHtml from './renderHtml'
+import htmlTemplate from './htmlTemplate'
 
 const app = Express()
 
-app.use(Express.static('dist'))
+// HMR
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const clientConfig = require('../../configs/client.dev.js')
+
+  const compiler = webpack(clientConfig)
+  const options = {
+    publicPath: clientConfig.output.publicPath,
+    noInfo: true,
+    serverSideRender: true
+  }
+  const devMiddleware = webpackDevMiddleware(compiler, options)
+
+  app.use(devMiddleware)
+  app.use(webpackHotMiddleware(compiler))
+} else {
+  app.use(Express.static('dist'))
+}
 
 app.get('/', (_: Express.Request, res: Express.Response) => {
-  const jsx = <App />
-  const reactDom = renderToString(jsx)
+  const [headHtml, tailHtml] = htmlTemplate(['public/client.js'])
+  res.write(headHtml)
 
-  res.send(renderHtml(reactDom, ['client.js']))
+  const stream = renderToNodeStream(<App />)
+  stream.pipe(
+    res,
+    { end: false }
+  )
+  stream.on('end', () => {
+    res.end(tailHtml)
+  })
 })
 
 app.listen(2233, () => {
