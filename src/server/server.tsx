@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(devMiddleware)
   app.use(webpackHotMiddleware(compiler))
 } else {
-  app.use(Express.static('dist'))
+  app.use('/public', Express.static('dist'))
 }
 
 app.get('/', (_: Express.Request, res: Express.Response) => {
