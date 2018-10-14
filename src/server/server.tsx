@@ -6,10 +6,26 @@ import htmlTemplate from './htmlTemplate'
 
 const app = Express()
 
-app.use(Express.static('dist'))
+// HMR
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const clientConfig = require('../../webpack.config')[1]
 
-app.use('*', (_: Express.Request, res: Express.Response) => {
-  const [headHtml, tailHtml] = htmlTemplate(['client.js'])
+  const publicPath = clientConfig.output.publicPath
+  const compiler = webpack(clientConfig)
+  const options = { publicPath, noInfo: true, serverSideRender: true }
+  const devMiddleware = webpackDevMiddleware(compiler, options)
+
+  app.use(devMiddleware)
+  app.use(webpackHotMiddleware(compiler))
+} else {
+  app.use(Express.static('dist'))
+}
+
+app.use('/', (_: Express.Request, res: Express.Response) => {
+  const [headHtml, tailHtml] = htmlTemplate(['dist/client.js'])
   res.write(headHtml)
 
   const stream = renderToNodeStream(<App />)
