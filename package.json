@@ -4,7 +4,8 @@
   "description": "React Sample App",
   "main": "dist/client.js",
   "scripts": {
-    "dev:build": "webpack --watch --progress",
+    "dev:build:server": "webpack --watch --progress --config configs/server.dev.js",
+    "dev:build:client": "webpack --watch --progress --config configs/client.dev.js",
     "dev:server": "node dist/server.js",
     "dev:bench": "autocannon http://localhost:2233",
     "test": "jest --coverage",
@@ -24,6 +25,10 @@
   "lint-staged": {
     "*.{ts, tsx}": [
       "tslint --fix",
+      "git add"
+    ],
+    "*.js": [
+      "npx prettier --no-semi --single-quote --write",
       "git add"
     ]
   },

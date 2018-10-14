@@ -9,6 +9,7 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>React SSR Sample</h1>
+        <p>HMR is working fine!!</p>
         <button onClick={this.clickButton}>Hi!</button>
       </div>
     )

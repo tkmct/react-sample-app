@@ -11,11 +11,14 @@ if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack')
   const webpackHotMiddleware = require('webpack-hot-middleware')
   const webpackDevMiddleware = require('webpack-dev-middleware')
-  const clientConfig = require('../../webpack.config')[1]
+  const clientConfig = require('../../configs/client.dev.js')
 
-  const publicPath = clientConfig.output.publicPath
   const compiler = webpack(clientConfig)
-  const options = { publicPath, noInfo: true, serverSideRender: true }
+  const options = {
+    publicPath: clientConfig.output.publicPath,
+    noInfo: true,
+    serverSideRender: true
+  }
   const devMiddleware = webpackDevMiddleware(compiler, options)
 
   app.use(devMiddleware)
@@ -24,8 +27,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(Express.static('dist'))
 }
 
-app.use('/', (_: Express.Request, res: Express.Response) => {
-  const [headHtml, tailHtml] = htmlTemplate(['dist/client.js'])
+app.get('/', (_: Express.Request, res: Express.Response) => {
+  const [headHtml, tailHtml] = htmlTemplate(['public/client.js'])
   res.write(headHtml)
 
   const stream = renderToNodeStream(<App />)
