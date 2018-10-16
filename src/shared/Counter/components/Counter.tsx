@@ -7,7 +7,7 @@ interface IProps {
   decrement: () => { type: string }
 }
 
-class App extends React.Component<IProps> {
+class Counter extends React.Component<IProps> {
   public render() {
     return (
       <div>
@@ -28,4 +28,4 @@ export default connect(
     increment: () => ({ type: 'INCREMENT' }),
     decrement: () => ({ type: 'DECREMENT' })
   }
-)(App)
+)(Counter)

@@ -3,9 +3,10 @@ import * as React from 'react'
 import { renderToNodeStream } from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from '../client/App'
+import { StaticRouter } from 'react-router-dom'
+import App from '../shared/App'
 import htmlTemplate from './htmlTemplate'
-import counter, { fetchCounter } from '../store/counter'
+import counter, { fetchCounter } from '../shared/store/counter'
 
 const PORT = 2233
 const app = Express()
@@ -47,7 +48,9 @@ function handleRender(req: Express.Request, res: Express.Response) {
     res.write(headHtml)
     const stream = renderToNodeStream(
       <Provider store={store}>
-        <App />
+        <StaticRouter location={req.url} context={{}}>
+          <App />
+        </StaticRouter>
       </Provider>
     )
 
