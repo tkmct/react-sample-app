@@ -1,9 +1,11 @@
 import * as React from 'react'
-import Routes from './Routes'
+import { renderRoutes } from 'react-router-config'
+import routes from './routes'
+import Layout from './components/Layout'
 
 class App extends React.Component {
   public render() {
-    return <Routes />
+    return <Layout>{renderRoutes(routes)}</Layout>
   }
 }
 
