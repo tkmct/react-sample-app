@@ -39,6 +39,8 @@
     "@types/react": "^16.4.16",
     "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.9",
+    "@types/react-router-config": "^1.0.9",
+    "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.0.3",
     "@types/redux": "^3.6.0",
     "@types/webpack": "^4.4.16",
@@ -87,6 +89,9 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-config": "^4.4.0-beta.1",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0"
   }
 }
