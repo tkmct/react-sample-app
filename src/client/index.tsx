@@ -10,6 +10,7 @@ if (window) {
   const preloadedState = (window as any).__PRELOADED_STATE__
   delete (window as any).__PRELOADED_STATE__
   const store = createStore(counter, preloadedState)
+  ;(window as any).store = store // for HMR on client side
 
   ReactDOM.hydrate(
     <Provider store={store}>
