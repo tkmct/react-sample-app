@@ -10,6 +10,7 @@
     "allowUnusedLabels": false,
     "jsx": "react",
     "target": "es5",
+    "moduleResolution": "node",
     "lib": [
       "es2015",
       "es2016",
