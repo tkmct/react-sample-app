@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "es2015",
+    "module": "esNext",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
