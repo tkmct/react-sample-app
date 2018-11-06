@@ -7,8 +7,11 @@ import counter from '../shared/store/counter'
 import App from '../shared/App'
 
 if (window) {
-  const preloadedState = (window as any).__PRELOADED_STATE__
-  delete (window as any).__PRELOADED_STATE__
+  const preloadedState = JSON.parse(
+    (document as any)
+      .querySelector('#preloaded-state')
+      .getAttribute('data-json')
+  )
   const store = createStore(counter, preloadedState)
   ;(window as any).store = store // for HMR on client side
 
