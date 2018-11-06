@@ -1,16 +1,16 @@
 import loadable from 'loadable-components'
 
 const Home = loadable(() =>
-  import(/* webpackChunkName: "Home" */ './Home/components/Home')
+  import(/* webpackChunkName: "Home" */ /* webpackPrefetch: 30 */ './Home/components/Home')
 )
 const About = loadable(() =>
-  import(/* webpackChunkName: "About" */ './About/components/About')
+  import(/* webpackChunkName: "About" */ /* webpackPrefetch: 20 */ './About/components/About')
 )
 const Counter = loadable(() =>
-  import(/* webpackChunkName: "Counter" */ './Counter/components/Counter')
+  import(/* webpackChunkName: "Counter" */ /* webpackPrefetch: 10 */ './Counter/components/Counter')
 )
 const NotFound = loadable(() =>
-  import(/* webpackChunkName: "NotFound" */ './components/NotFound')
+  import(/* webpackChunkName: "NotFound" */ /* webpackPrefetch: -1 */ './components/NotFound')
 )
 
 const routes = [
