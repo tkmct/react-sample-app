@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import App from '../shared/App'
 import Html from '../shared/components/Html'
-import rootReducer, { constructPreloadedState } from '../shared/store'
-import { fetchCounter } from '../shared/store/counter'
+import rootReducer, { constructPreloadedState } from '../shared/redux/modules'
+import { fetchCounter } from '../shared/redux/modules/counter'
 
 const PORT = 2233
 const app = Express()
