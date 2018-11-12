@@ -1,7 +1,11 @@
+interface CounterState {
+  count: number
+}
+
 function counter(
-  state = { count: 0 },
+  state: CounterState = { count: 0 },
   action: { type: 'INCREMENT' | 'DECREMENT' }
-) {
+): CounterState {
   switch (action.type) {
     case 'INCREMENT':
       return { count: state.count + 1 }

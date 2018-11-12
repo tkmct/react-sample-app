@@ -1,12 +1,12 @@
 import * as Express from 'express'
 import * as React from 'react'
 import { renderToNodeStream } from 'react-dom/server'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import App from '../shared/App'
 import Html from '../shared/components/Html'
-import rootReducer, { constructPreloadedState } from '../shared/redux/modules'
+import configureStore from '../shared/redux/configureStore'
+import { constructPreloadedState } from '../shared/redux/modules'
 import { fetchCounter } from '../shared/redux/modules/counter'
 
 const PORT = 2233
@@ -39,7 +39,7 @@ function handleRender(req: Express.Request, res: Express.Response) {
   fetchCounter().then(result => {
     const count = parseInt(req.query.count, 10) || result || 0
     const preloadedState = constructPreloadedState({ counter: { count } })
-    const store = createStore(rootReducer)
+    const store = configureStore(preloadedState)
 
     res.write('<!doctype html>')
 

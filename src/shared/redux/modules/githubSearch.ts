@@ -1,12 +1,20 @@
+interface GitHubSearchState {
+  result: any[]
+  loading: boolean
+}
+
+type PayloadType = any[]
+
 function githubSearch(
-  state = { result: [], loading: false },
-  action: { type: 'SUCCESS' | 'FETCH' | 'CLEAR'; payload?: any }
-) {
+  state: GitHubSearchState = { result: [], loading: false },
+  action: { type: 'SUCCESS' | 'FETCH' | 'CLEAR'; payload?: PayloadType }
+): GitHubSearchState {
   switch (action.type) {
     case 'FETCH':
       return { ...state, loading: true }
     case 'SUCCESS':
-      return { result: action.payload || [], loading: false }
+      const result = action.payload || []
+      return { result, loading: false }
     case 'CLEAR':
       return { ...state, result: [] }
     default:
