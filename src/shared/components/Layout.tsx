@@ -19,6 +19,9 @@ class Layout extends React.Component<IProps> {
           <li>
             <NavLink to="/counter">Counter</NavLink>
           </li>
+          <li>
+            <NavLink to="/githubsearch">GithubSearch</NavLink>
+          </li>
         </ul>
         {this.props.children}
       </div>

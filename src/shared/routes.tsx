@@ -9,6 +9,9 @@ const About = loadable(() =>
 const Counter = loadable(() =>
   import(/* webpackChunkName: "Counter" */ /* webpackPrefetch: 10 */ './Counter/components/Counter')
 )
+const GithubSearch = loadable(() =>
+  import(/* webpackChunkName: "GithubSearch" */ /* webpackPrefetch: 5 */ './GithubSearch/components')
+)
 const NotFound = loadable(() =>
   import(/* webpackChunkName: "NotFound" */ /* webpackPrefetch: -1 */ './components/NotFound')
 )
@@ -26,6 +29,10 @@ const routes = [
   {
     path: '/counter',
     component: Counter
+  },
+  {
+    path: '/githubsearch',
+    component: GithubSearch
   },
   {
     component: NotFound
