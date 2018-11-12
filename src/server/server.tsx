@@ -6,7 +6,8 @@ import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import App from '../shared/App'
 import Html from '../shared/components/Html'
-import counter, { fetchCounter } from '../shared/store/counter'
+import rootReducer, { constructPreloadedState } from '../shared/store'
+import { fetchCounter } from '../shared/store/counter'
 
 const PORT = 2233
 const app = Express()
@@ -37,8 +38,8 @@ app.use(handleRender)
 function handleRender(req: Express.Request, res: Express.Response) {
   fetchCounter().then(result => {
     const count = parseInt(req.query.count, 10) || result || 0
-    const preloadedState = { count }
-    const store = createStore(counter, preloadedState)
+    const preloadedState = constructPreloadedState({ counter: { count } })
+    const store = createStore(rootReducer)
 
     res.write('<!doctype html>')
 

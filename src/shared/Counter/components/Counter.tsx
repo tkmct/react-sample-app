@@ -22,7 +22,7 @@ class Counter extends React.Component<IProps> {
 
 export default connect(
   (state: any) => ({
-    count: state.count
+    count: state.counter.count
   }),
   {
     increment: () => ({ type: 'INCREMENT' }),

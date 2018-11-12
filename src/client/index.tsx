@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import counter from '../shared/store/counter'
+import rootReducer from '../shared/store'
 import App from '../shared/App'
 
 if (window) {
@@ -12,7 +12,7 @@ if (window) {
       .querySelector('#preloaded-state')
       .getAttribute('data-json')
   )
-  const store = createStore(counter, preloadedState)
+  const store = createStore(rootReducer, preloadedState)
   ;(window as any).store = store // for HMR on client side
 
   ReactDOM.hydrate(
