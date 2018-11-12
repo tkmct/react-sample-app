@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 
-interface IProps {
+interface Props {
   children: React.ReactNode
 }
 
-class Layout extends React.Component<IProps> {
+class Layout extends React.Component<Props> {
   public render() {
     return (
       <div>

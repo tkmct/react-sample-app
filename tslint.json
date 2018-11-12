@@ -15,6 +15,7 @@
     "no-var-requires": false,
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
+    "interface-name": false,
     "prettier": [
       true,
       {

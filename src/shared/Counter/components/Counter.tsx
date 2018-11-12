@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-interface IProps {
+interface Props {
   count: number
   increment: () => { type: string }
   decrement: () => { type: string }
 }
 
-class Counter extends React.Component<IProps> {
+class Counter extends React.Component<Props> {
   public render() {
     return (
       <div>

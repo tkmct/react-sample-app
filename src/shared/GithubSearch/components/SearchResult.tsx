@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-interface IProps {
+interface Props {
   result: any[]
 }
 
-class SearchResult extends React.Component<IProps> {
+class SearchResult extends React.Component<Props> {
   public render() {
     return (
       <ul>

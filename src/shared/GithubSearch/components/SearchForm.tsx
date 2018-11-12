@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-interface IProps {
+interface Props {
   search: (query: string) => any
   searchSuccess: (result: any[]) => any
 }
 
-interface IState {
+interface State {
   searchText: string
 }
 
-class SearchForm extends React.PureComponent<IProps, IState> {
-  constructor(props: IProps) {
+class SearchForm extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
