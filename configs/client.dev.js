@@ -12,7 +12,8 @@ module.exports = merge(base, {
     client: [
       './src/client/index.tsx',
       'webpack-hot-middleware/client?quiet=true'
-    ]
+    ],
+    serviceWorker: ['./src/client/serviceWorker.ts']
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 })
