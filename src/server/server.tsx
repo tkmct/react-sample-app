@@ -17,7 +17,8 @@ if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack')
   const webpackHotMiddleware = require('webpack-hot-middleware')
   const webpackDevMiddleware = require('webpack-dev-middleware')
-  const clientConfig = require('../../configs/client.dev.js')
+  const clientConfig = require('../../configs/client.dev.js')[0]
+  const swConfig = require('../../configs/client.dev.js')[1]
 
   const compiler = webpack(clientConfig)
   const options = {
@@ -29,6 +30,8 @@ if (process.env.NODE_ENV !== 'production') {
 
   app.use(devMiddleware)
   app.use(webpackHotMiddleware(compiler))
+  const swCompiler = webpack(swConfig)
+  app.use(webpackDevMiddleware(swCompiler, options))
 } else {
   app.use('/public', Express.static('dist'))
 }
