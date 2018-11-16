@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   const compiler = webpack(clientConfig)
   const options = {
-    publicPath: clientConfig.output.publicPath,
+    publicPath: clientConfig[0].output.publicPath,
     noInfo: true,
     serverSideRender: true
   }
