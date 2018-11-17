@@ -1,4 +1,4 @@
-import * as Express from 'express'
+import * as express from 'express'
 import * as React from 'react'
 import { renderToNodeStream } from 'react-dom/server'
 import { Provider } from 'react-redux'
@@ -10,7 +10,7 @@ import { constructPreloadedState } from '../shared/redux/modules'
 import { fetchCounter } from '../shared/redux/modules/counter'
 
 const PORT = 2233
-const app = Express()
+const app = express()
 
 // HMR
 if (process.env.NODE_ENV !== 'production') {
@@ -33,12 +33,12 @@ if (process.env.NODE_ENV !== 'production') {
   const swCompiler = webpack(swConfig)
   app.use(webpackDevMiddleware(swCompiler, options))
 } else {
-  app.use('/public', Express.static('dist'))
+  app.use('/public', express.static('dist'))
 }
 
 app.use(handleRender)
 
-function handleRender(req: Express.Request, res: Express.Response) {
+function handleRender(req: express.Request, res: express.Response) {
   fetchCounter().then(result => {
     const count = parseInt(req.query.count, 10) || result || 0
     const preloadedState = constructPreloadedState({ counter: { count } })
