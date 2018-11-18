@@ -2,8 +2,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import configureStore from '../shared/redux/configureStore'
-import App from '../shared/App'
+import configureStore from './shared/redux/configureStore'
+import App from './shared/App'
 
 if (window) {
   const preloadedState = JSON.parse(
@@ -38,18 +38,4 @@ if (module.hot) {
       document.getElementById('app')
     )
   })
-}
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/public/serviceWorker.js')
-    .then(registration => {
-      console.log(
-        'ServiceWorker registration successful with scope: ',
-        registration.scope
-      )
-    })
-    .catch(err => {
-      console.log('ServiceWorker registration failed: ', err)
-    })
 }

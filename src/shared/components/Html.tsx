@@ -8,14 +8,15 @@ const Html = (props: {
   <html>
     <head>
       <title>React SSR</title>
-    </head>
-    <body>
-      <div id="app">{props.children}</div>
       <script
         id="preloaded-state"
         data-json={JSON.stringify(props.preloadedState)}
+        defer
       />
-      <script src={props.src} />
+      <script src={props.src} defer />
+    </head>
+    <body>
+      <div id="app">{props.children}</div>
     </body>
   </html>
 )

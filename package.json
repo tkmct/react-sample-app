@@ -4,11 +4,11 @@
   "description": "React Sample App",
   "main": "dist/client.js",
   "scripts": {
-    "dev:build:server": "webpack --watch --progress --config configs/server.dev.js",
-    "dev:build:client": "webpack --watch --progress --config configs/client.dev.js",
+    "start": "node ./scripts/start.js",
     "dev:server": "node dist/server.js",
-    "dev:bench": "autocannon http://localhost:2233",
-    "test": "jest --coverage",
+    "bench": "autocannon http://localhost:2233",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "precommit": "lint-staged"
   },
