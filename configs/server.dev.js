@@ -7,7 +7,7 @@ const base = require('./base')
 module.exports = merge(base, {
   name: 'server',
   target: 'node',
-  entry: { server: './src/server/server.tsx' },
+  entry: { server: './src/index.ts' },
   output: {
     library: 'server',
     libraryTarget: 'commonjs2'

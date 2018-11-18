@@ -10,12 +10,14 @@ module.exports = [
     name: 'client',
     target: 'web',
     entry: {
-      client: [
-        './src/client/index.tsx',
-        'webpack-hot-middleware/client?quiet=true'
-      ]
+      client: ['./src/client/index.tsx']
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    output: {
+      filename: '[name].js',
+      chunkFilename: '[name].bundle.js',
+      path: path.resolve('dist/public/static/js'),
+      publicPath: '/static/js/'
+    }
   }),
   merge(base, {
     name: 'serviceWorker',

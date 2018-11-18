@@ -7,55 +7,28 @@ import App from '../shared/App'
 import Html from '../shared/components/Html'
 import configureStore from '../shared/redux/configureStore'
 import { constructPreloadedState } from '../shared/redux/modules'
-import { fetchCounter } from '../shared/redux/modules/counter'
 
-const PORT = 2233
-const app = express()
+// TODO: set process.env.PUBLIC_DIR using webpackDefinePlugin when build time
+const PUBLIC_DIR = 'dist/public'
 
-// HMR
-if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack')
-  const webpackHotMiddleware = require('webpack-hot-middleware')
-  const webpackDevMiddleware = require('webpack-dev-middleware')
-  const clientConfig = require('../../configs/client.dev.js')[0]
-  const swConfig = require('../../configs/client.dev.js')[1]
-
-  const compiler = webpack(clientConfig)
-  const options = {
-    publicPath: clientConfig[0].output.publicPath,
-    noInfo: true,
-    serverSideRender: true
-  }
-  const devMiddleware = webpackDevMiddleware(compiler, options)
-
-  app.use(devMiddleware)
-  app.use(webpackHotMiddleware(compiler))
-  const swCompiler = webpack(swConfig)
-  app.use(webpackDevMiddleware(swCompiler, options))
-} else {
-  app.use('/public', express.static('dist'))
-}
-
-app.use(handleRender)
+const server = express()
+server.use(express.static(PUBLIC_DIR)).use(handleRender)
 
 function handleRender(req: express.Request, res: express.Response) {
-  fetchCounter().then(result => {
-    const count = parseInt(req.query.count, 10) || result || 0
-    const preloadedState = constructPreloadedState({ counter: { count } })
-    const store = configureStore(preloadedState)
+  const preloadedState = constructPreloadedState({})
+  const store = configureStore(preloadedState)
 
-    res.write('<!doctype html>')
+  res.write('<!doctype html>')
 
-    renderToNodeStream(
-      <Html src="/public/client.js" preloadedState={preloadedState}>
-        <Provider store={store}>
-          <StaticRouter location={req.url} context={{}}>
-            <App />
-          </StaticRouter>
-        </Provider>
-      </Html>
-    ).pipe(res)
-  })
+  renderToNodeStream(
+    <Html src="/static/js/client.js" preloadedState={preloadedState}>
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={{}}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    </Html>
+  ).pipe(res)
 }
 
-app.listen(PORT)
+export default server

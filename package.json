@@ -4,8 +4,9 @@
   "description": "React Sample App",
   "main": "dist/client.js",
   "scripts": {
-    "dev:build:server": "webpack --watch --progress --config configs/server.dev.js",
-    "dev:build:client": "webpack --watch --progress --config configs/client.dev.js",
+    "dev:build" : "npm run dev:build:server && npm run dev:build:client",
+    "dev:build:server": "webpack --progress --config configs/server.dev.js",
+    "dev:build:client": "webpack --progress --config configs/client.dev.js",
     "dev:server": "node dist/server.js",
     "dev:bench": "autocannon http://localhost:2233",
     "test": "jest --coverage",
