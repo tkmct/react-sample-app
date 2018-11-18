@@ -4,6 +4,7 @@
   "description": "React Sample App",
   "main": "dist/client.js",
   "scripts": {
+    "start": "node ./scripts/start.js",
     "dev:build" : "npm run dev:build:server && npm run dev:build:client",
     "dev:build:server": "webpack --progress --config configs/server.dev.js",
     "dev:build:client": "webpack --progress --config configs/client.dev.js",

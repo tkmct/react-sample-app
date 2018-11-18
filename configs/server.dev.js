@@ -12,5 +12,10 @@ module.exports = merge(base, {
     library: 'server',
     libraryTarget: 'commonjs2'
   },
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
+  ],
   externals: [nodeExternals()]
 })
