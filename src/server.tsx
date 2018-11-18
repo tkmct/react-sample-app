@@ -21,7 +21,10 @@ function handleRender(req: express.Request, res: express.Response) {
   res.write('<!doctype html>')
 
   renderToNodeStream(
-    <Html src="/static/js/client.js" preloadedState={preloadedState}>
+    <Html
+      src="http://localhost:2234/static/js/client.js"
+      preloadedState={preloadedState}
+    >
       <Provider store={store}>
         <StaticRouter location={req.url} context={{}}>
           <App />
