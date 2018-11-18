@@ -2,8 +2,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import configureStore from '../shared/redux/configureStore'
-import App from '../shared/App'
+import configureStore from './shared/redux/configureStore'
+import App from './shared/App'
 
 if (window) {
   const preloadedState = JSON.parse(

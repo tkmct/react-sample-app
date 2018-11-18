@@ -9,7 +9,7 @@ module.exports = merge(base, {
   name: 'client',
   target: 'web',
   entry: {
-    client: ['./src/client/index.tsx']
+    client: ['./src/client.tsx']
   },
   output: {
     filename: '[name].js',
