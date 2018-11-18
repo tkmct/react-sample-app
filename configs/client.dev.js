@@ -3,8 +3,11 @@ const merge = require('webpack-merge')
 const path = require('path')
 const base = require('./base')
 
-const rootDir = path.resolve('..')
 const PORT = process.env.PORT || 2233
+
+const rootDir = path.resolve('..')
+const publicPath = '/static/js/'
+const outPublicPath = 'http://localhost:' + (PORT + 1) + publicPath
 
 module.exports = merge(base, {
   name: 'client',
@@ -18,8 +21,7 @@ module.exports = merge(base, {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve('../dist/public/static/js'),
-    publicPath: '/static/js'
+    publicPath: outPublicPath
   },
   devServer: {
     disableHostCheck: true,
@@ -29,7 +31,7 @@ module.exports = merge(base, {
     },
     host: 'localhost',
     port: PORT + 1,
-    publicPath: '/static/js/',
+    publicPath: publicPath,
     quiet: true,
     watchOptions: {
       ignored: /node_modules/
