@@ -1,6 +1,8 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const path = require('path')
+const WebpackBar = require('webpackbar')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const base = require('./base')
 
 const PORT = process.env.PORT || 2233
@@ -23,6 +25,10 @@ module.exports = merge(base, {
     chunkFilename: '[name].bundle.js',
     publicPath: outPublicPath
   },
+  plugins: [
+    new WebpackBar({ name: 'client', color: 'orange' }),
+    new FriendlyErrorsWebpackPlugin()
+  ],
   devServer: {
     disableHostCheck: true,
     clientLogLevel: 'none',
