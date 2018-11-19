@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 'use strict'
 
+// TODO: read from procces.env
 process.env.NODE_ENV = 'development'
 const PORT = process.env.PORT || 2233
 

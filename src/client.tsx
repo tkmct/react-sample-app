@@ -26,8 +26,8 @@ if (window) {
 
 // HMR
 if (module.hot) {
-  module.hot.accept('../shared/App', () => {
-    const App = require('../shared/App').default
+  module.hot.accept('./shared/App', () => {
+    const App = require('./shared/App').default
 
     ReactDOM.hydrate(
       <Provider store={(window as any).store}>

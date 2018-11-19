@@ -5,18 +5,21 @@ const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const base = require('./base')
 
+// TODO: read from process.env
 const PORT = process.env.PORT || 2233
+const DEV_SERVER_PORT = PORT + 1
 
 const rootDir = path.resolve('..')
 const publicPath = '/static/js/'
-const outPublicPath = 'http://localhost:' + (PORT + 1) + publicPath
+const outPublicPath = 'http://localhost:' + DEV_SERVER_PORT + publicPath
 
 module.exports = merge(base, {
   name: 'client',
   target: 'web',
   entry: {
     client: [
-      'webpack-dev-server/client?http://localhost:2234/',
+      'webpack-dev-server/client?http://localhost:' + DEV_SERVER_PORT,
+      'webpack/hot/dev-server?http://localhost:' + DEV_SERVER_PORT,
       './src/client.tsx'
     ]
   },
@@ -26,6 +29,7 @@ module.exports = merge(base, {
     publicPath: outPublicPath
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new WebpackBar({ name: 'client', color: 'orange' }),
     new FriendlyErrorsWebpackPlugin()
   ],
@@ -41,6 +45,8 @@ module.exports = merge(base, {
     quiet: true,
     watchOptions: {
       ignored: /node_modules/
-    }
+    },
+    hot: true,
+    overlay: true
   }
 })
