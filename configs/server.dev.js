@@ -25,10 +25,16 @@ module.exports = merge(base, {
     new WebpackBar({ name: 'server', color: 'blue' }),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['Server is running on PORT: ' + PORT]
+        messages: [
+          'Server is running on PORT: ' + PORT,
+          'Enter `rs` to restart server.'
+        ]
       }
     }),
-    new StartServerPlugin({ name: 'server.js' })
+    new StartServerPlugin({
+      name: 'server.js',
+      keyboard: true // TODO: disable for production build
+    })
   ],
   externals: [nodeExternals()]
 })
