@@ -9,6 +9,7 @@ const webpack = require('webpack')
 const devServer = require('webpack-dev-server')
 const clearConsole = require('react-dev-utils/clearConsole')
 const chalk = require('chalk')
+const opn = require('opn')
 
 function main() {
   clearConsole()
@@ -21,6 +22,16 @@ function main() {
 
   clientCompiler.hooks.done.tap('StartServer', () => {
     serverCompiler.watch({ quiet: true }, (err, stats) => {})
+  })
+
+  // FIXME: more elegant implementation
+  // Open browser when build start for first time
+  let browserOpen = false
+  serverCompiler.hooks.done.tap('Open', () => {
+    if (!browserOpen) {
+      opn('http://localhost:' + PORT)
+      browserOpen = true
+    }
   })
 
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer)
