@@ -46,6 +46,7 @@ module.exports = merge(base, {
     watchOptions: {
       ignored: /node_modules/
     },
-    hot: true
+    hot: true,
+    overlay: true
   }
 })
