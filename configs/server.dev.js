@@ -4,7 +4,11 @@ const merge = require('webpack-merge')
 const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
+const StartServerPlugin = require('start-server-webpack-plugin')
 const base = require('./base')
+
+// TODO: read from process.env
+const PORT = process.env.PORT || 2233
 
 module.exports = merge(base, {
   name: 'server',
@@ -18,8 +22,13 @@ module.exports = merge(base, {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new WebpackBar({ name: 'server', color: 'blue', profile: true }),
-    new FriendlyErrorsWebpackPlugin()
+    new WebpackBar({ name: 'server', color: 'blue' }),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['Server is running on PORT: ' + PORT]
+      }
+    }),
+    new StartServerPlugin({ name: 'server.js' })
   ],
   externals: [nodeExternals()]
 })

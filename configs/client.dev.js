@@ -5,6 +5,7 @@ const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const base = require('./base')
 
+// TODO: read from process.env
 const PORT = process.env.PORT || 2233
 
 const rootDir = path.resolve('..')
