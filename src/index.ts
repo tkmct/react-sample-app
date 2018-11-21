@@ -1,10 +1,23 @@
-import server from './server'
+import * as http from 'http'
+import app from './server'
 
-server.listen(process.env.PORT || 2233)
+const server = http.createServer(app)
+let currentApp = app
 
-// TODO: write hot module reloading code here
+server.listen(process.env.PORT || 2233, (error: Error) => {
+  if (error) {
+    console.log(error)
+  }
+
+  console.log('🚀 started')
+})
+
 if (module.hot) {
+  // when detecting './server' file update, recreate app
   module.hot.accept('./server', () => {
-    console.log('server hot!!')
+    server.removeListener('request', currentApp)
+    const newApp = require('./server').default
+    server.on('request', newApp)
+    currentApp = newApp
   })
 }
