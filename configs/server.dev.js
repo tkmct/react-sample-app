@@ -13,12 +13,15 @@ const PORT = process.env.PORT || 2233
 module.exports = merge(base, {
   name: 'server',
   target: 'node',
-  entry: { server: './src/index.ts' },
+  entry: {
+    server: ['webpack/hot/poll?300', './src/index.ts']
+  },
   output: {
     library: 'server',
     libraryTarget: 'commonjs2'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
@@ -36,5 +39,9 @@ module.exports = merge(base, {
       keyboard: true // TODO: disable for production build
     })
   ],
-  externals: [nodeExternals()]
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?300']
+    })
+  ]
 })

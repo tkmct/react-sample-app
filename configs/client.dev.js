@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const AssetsPlugin = require('assets-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const base = require('./base')
@@ -30,6 +31,10 @@ module.exports = merge(base, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new AssetsPlugin({
+      path: path.resolve('dist'),
+      filename: 'assets.json'
+    }),
     new WebpackBar({ name: 'client', color: 'orange' }),
     new FriendlyErrorsWebpackPlugin()
   ],
