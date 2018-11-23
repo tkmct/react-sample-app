@@ -4,7 +4,6 @@ const merge = require('webpack-merge')
 const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
-const StartServerPlugin = require('start-server-webpack-plugin')
 const base = require('./base')
 
 // TODO: read from process.env
@@ -25,18 +24,7 @@ module.exports = merge(base, {
       maxChunks: 1
     }),
     new WebpackBar({ name: 'server', color: 'blue' }),
-    new FriendlyErrorsWebpackPlugin({
-      compilationSuccessInfo: {
-        messages: [
-          'Server is running on PORT: ' + PORT,
-          'Enter `rs` to restart server.'
-        ]
-      }
-    }),
-    new StartServerPlugin({
-      name: 'server.js',
-      keyboard: true // TODO: disable for production build
-    })
+    new FriendlyErrorsWebpackPlugin()
   ],
   externals: [
     nodeExternals({

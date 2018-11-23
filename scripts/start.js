@@ -5,11 +5,13 @@
 process.env.NODE_ENV = 'development'
 const PORT = process.env.PORT || 2233
 
+const path = require('path')
 const webpack = require('webpack')
 const devServer = require('webpack-dev-server')
 const clearConsole = require('react-dev-utils/clearConsole')
 const chalk = require('chalk')
 const opn = require('opn')
+const startProcess = require('./utils/startProcess')
 
 function main() {
   clearConsole()
@@ -20,8 +22,21 @@ function main() {
   const clientCompiler = compile(clientConfig)
   const serverCompiler = compile(serverConfig)
 
-  clientCompiler.hooks.done.tap('StartServer', () => {
+  let serverProcess
+
+  clientCompiler.hooks.done.tap('Watch server', () => {
     serverCompiler.watch({ quiet: true }, (err, stats) => {})
+  })
+
+  serverCompiler.hooks.done.tap('Restart server', () => {
+    if (serverProcess) {
+      serverProcess.kill()
+      console.log('Restarting server')
+    } else {
+      console.log('Starting server')
+    }
+
+    serverProcess = startProcess(path.resolve('dist/server.js'))
   })
 
   // FIXME: more elegant implementation
