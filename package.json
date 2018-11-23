@@ -2,7 +2,7 @@
   "name": "react-sample-app",
   "version": "0.1.0",
   "description": "React Sample App",
-  "main": "dist/client.js",
+  "main": "dist/server.js",
   "scripts": {
     "start": "node ./scripts/start.js",
     "dev:server": "node dist/server.js",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/tkmttm/react-sample-app.git"
+    "url": "git+ssh://git@github.com/tkmct/react-sample-app.git"
   },
   "keywords": [],
   "author": "ttsutsumi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tkmttm/react-sample-app/issues"
+    "url": "https://github.com/tkmct/react-sample-app/issues"
   },
-  "homepage": "https://github.com/tkmttm/react-sample-app#readme",
+  "homepage": "https://github.com/tkmct/react-sample-app#readme",
   "lint-staged": {
     "*.{ts, tsx}": [
       "tslint --fix",
