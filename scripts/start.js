@@ -28,21 +28,21 @@ function main() {
     serverCompiler.watch({ quiet: true }, (err, stats) => {})
   })
 
+  let browserOpen = false
   serverCompiler.hooks.done.tap('Restart server', () => {
     if (serverProcess) {
       serverProcess.kill()
-      console.log('Restarting server')
+      console.log(chalk.bgBlueBright(' I '), 'Restarting server')
     } else {
-      console.log('Starting server')
+      console.log(chalk.bgBlueBright(' I '), 'Starting server')
     }
 
     serverProcess = startProcess(path.resolve('dist/server.js'))
-  })
 
-  // FIXME: more elegant implementation
-  // Open browser when build start for first time
-  let browserOpen = false
-  serverCompiler.hooks.done.tap('Open', () => {
+    console.log(chalk.bgBlueBright(' I '), 'Server started on port: ' + PORT)
+
+    // FIXME: more elegant implementation
+    // Open browser when build start for first time
     if (!browserOpen) {
       opn('http://localhost:' + PORT)
       browserOpen = true

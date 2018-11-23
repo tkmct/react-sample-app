@@ -36,7 +36,7 @@ module.exports = merge(base, {
       filename: 'assets.json'
     }),
     new WebpackBar({ name: 'client', color: 'orange' }),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin({ clearConsole: false })
   ],
   devServer: {
     disableHostCheck: true,

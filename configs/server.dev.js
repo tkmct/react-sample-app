@@ -24,7 +24,7 @@ module.exports = merge(base, {
       maxChunks: 1
     }),
     new WebpackBar({ name: 'server', color: 'blue' }),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin({ clearConsole: false })
   ],
   externals: [
     nodeExternals({

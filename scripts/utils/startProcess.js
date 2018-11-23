@@ -6,7 +6,6 @@ function startProcess(filePath) {
     silent: true
   })
 
-  console.log('Server started')
   return cluster.fork()
 }
 
