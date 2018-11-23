@@ -11,13 +11,7 @@ class Layout extends React.Component<Props> {
       <div>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/counter">Counter</NavLink>
+            <NavLink to="/">Counter</NavLink>
           </li>
           <li>
             <NavLink to="/githubsearch">GithubSearch</NavLink>
