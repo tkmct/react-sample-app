@@ -9,8 +9,8 @@ const path = require('path')
 const webpack = require('webpack')
 const devServer = require('webpack-dev-server')
 const clearConsole = require('react-dev-utils/clearConsole')
+const openBrowser = require('react-dev-utils/openBrowser')
 const chalk = require('chalk')
-const opn = require('opn')
 const startProcess = require('./utils/startProcess')
 
 function main() {
@@ -28,7 +28,6 @@ function main() {
     serverCompiler.watch({ quiet: true }, (err, stats) => {})
   })
 
-  let browserOpen = false
   serverCompiler.hooks.done.tap('Restart server', () => {
     if (serverProcess) {
       serverProcess.kill()
@@ -41,12 +40,7 @@ function main() {
 
     console.log(chalk.bgBlueBright(' I '), 'Server started on port: ' + PORT)
 
-    // FIXME: more elegant implementation
-    // Open browser when build start for first time
-    if (!browserOpen) {
-      opn('http://localhost:' + PORT)
-      browserOpen = true
-    }
+    openBrowser('http://localhost:' + PORT)
   })
 
   const clientDevServer = new devServer(clientCompiler, clientConfig.devServer)
