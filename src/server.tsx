@@ -7,7 +7,6 @@ import { StaticRouter } from 'react-router-dom'
 import App from './shared/App'
 import Html from './shared/components/Html'
 import configureStore from './shared/redux/configureStore'
-import { constructPreloadedState } from './shared/redux/modules'
 
 // TODO: set process.env.PUBLIC_DIR using webpackDefinePlugin when build time
 const PUBLIC_DIR = 'public'
@@ -17,8 +16,8 @@ server.use(express.static(path.resolve(PUBLIC_DIR))).use(handleRender)
 
 function handleRender(req: express.Request, res: express.Response) {
   // Get routed component using req and fetch preloaded state
-  const preloadedState = constructPreloadedState({})
-  const store = configureStore(preloadedState)
+  const store = configureStore()
+  const preloadedState = store.getState()
 
   res.write('<!doctype html>')
 

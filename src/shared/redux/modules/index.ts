@@ -6,7 +6,3 @@ export default combineReducers({
   counter,
   githubSearch
 })
-
-export const constructPreloadedState = (preloadedState: any) => {
-  return preloadedState
-}
