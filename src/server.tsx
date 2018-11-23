@@ -1,3 +1,4 @@
+import * as path from 'path'
 import * as express from 'express'
 import * as React from 'react'
 import { renderToNodeStream } from 'react-dom/server'
@@ -9,12 +10,13 @@ import configureStore from './shared/redux/configureStore'
 import { constructPreloadedState } from './shared/redux/modules'
 
 // TODO: set process.env.PUBLIC_DIR using webpackDefinePlugin when build time
-const PUBLIC_DIR = 'dist/public'
+const PUBLIC_DIR = 'public'
 
 const server = express()
-server.use(express.static(PUBLIC_DIR)).use(handleRender)
+server.use(express.static(path.resolve(PUBLIC_DIR))).use(handleRender)
 
 function handleRender(req: express.Request, res: express.Response) {
+  // Get routed component using req and fetch preloaded state
   const preloadedState = constructPreloadedState({})
   const store = configureStore(preloadedState)
 

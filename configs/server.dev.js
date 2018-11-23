@@ -14,14 +14,13 @@ module.exports = merge(base, {
   name: 'server',
   target: 'node',
   entry: {
-    server: ['webpack/hot/poll?300', './src/index.ts']
+    server: ['./src/index.ts']
   },
   output: {
     library: 'server',
     libraryTarget: 'commonjs2'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),

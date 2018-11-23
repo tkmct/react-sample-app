@@ -8,6 +8,7 @@ const Html = (props: {
   <html>
     <head>
       <title>React SSR</title>
+      <link rel="icon" href="/favicon.ico" />
       <script
         id="preloaded-state"
         data-json={JSON.stringify(props.preloadedState)}
