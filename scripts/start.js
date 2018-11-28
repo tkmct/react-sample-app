@@ -12,12 +12,14 @@ const clearConsole = require('react-dev-utils/clearConsole')
 const openBrowser = require('react-dev-utils/openBrowser')
 const chalk = require('chalk')
 const startProcess = require('./utils/startProcess')
+const createConfig = require('../configs/createConfig')
 
 function main() {
   clearConsole()
   console.log(chalk.magenta('Starting...'))
-  const clientConfig = require('../configs/client.dev')
-  const serverConfig = require('../configs/server.dev')
+
+  const clientConfig = createConfig('web', 'development', { port: PORT })
+  const serverConfig = createConfig('node', 'development', { port: PORT })
 
   const clientCompiler = compile(clientConfig)
   const serverCompiler = compile(serverConfig)
