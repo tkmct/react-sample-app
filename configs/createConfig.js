@@ -97,7 +97,9 @@ module.exports = (target = 'web', env = 'development', { port = 2233 }) => {
           maxChunks: 1
         }),
         new WebpackBar({ name: 'server', color: 'blue' }),
-        new FriendlyErrorsWebpackPlugin({ clearConsole: false })
+        new FriendlyErrorsWebpackPlugin({ clearConsole: false }),
+
+        new webpack.WatchIgnorePlugin([path.resolve('src', 'shared')])
       ],
       externals: [
         nodeExternals({
